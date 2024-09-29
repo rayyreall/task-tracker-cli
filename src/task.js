@@ -1,6 +1,10 @@
 const fs = require('fs');
 
+/**
+ * Membuat class untuk mengelompokkan Task task
+ */
 class Task {
+  // mengelola path
   filePath = './task.json';
   tasks;
   id;
@@ -70,19 +74,23 @@ class Task {
     let tasks = this.filterListTask(status);
 
     tasks.forEach((task, index) => {
-      console.log(`${++index}. ${task.description}  [${task.status}] [Create at: ${new Date(task.createdAt).toLocaleDateString()}] [Update at: ${new Date(task.updateAt).toLocaleDateString()}]`);
+      console.log(
+        `${++index}. ${task.description}  [${task.status}] [Create at: ${new Date(
+          task.createdAt
+        ).toLocaleDateString()}] [Update at: ${new Date(task.updateAt).toLocaleDateString()}]`
+      );
     });
   }
 
-  filterListTask (status) {
+  filterListTask(status) {
     let tasks = this.tasks;
 
     if (status === 'done') {
-      tasks = tasks.filter(task => task.status === 'done');
+      tasks = tasks.filter((task) => task.status === 'done');
     } else if (status === 'todo') {
-      tasks = tasks.filter(task => task.status === 'todo');
+      tasks = tasks.filter((task) => task.status === 'todo');
     } else if (status === 'in-progress') {
-      tasks = tasks.filter(task => task.status === 'in-progress');
+      tasks = tasks.filter((task) => task.status === 'in-progress');
     }
 
     return tasks;
